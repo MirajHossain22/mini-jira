@@ -45,6 +45,16 @@ erDiagram
     COMMENT { uuid Id PK uuid TaskItemId FK uuid AuthorId FK string Body }
 ```
 
+## Screenshots
+
+### Swagger API documentation
+
+![Task Tracker Swagger UI](docs/screenshots/swagger-overview.png)
+
+### Service-layer test run
+
+![Ten passing xUnit service tests](docs/screenshots/service-tests.png)
+
 ## Run with Docker (recommended)
 
 Requirements: Docker Desktop with Compose.
