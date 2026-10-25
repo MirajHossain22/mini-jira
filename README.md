@@ -135,3 +135,5 @@ CI runs restore, Release build, and all tests. Locally:
 dotnet build TaskTracker.sln
 dotnet test TaskTracker.sln --no-build
 ```
+
+See the [local verification report](docs/VERIFICATION.md) for the tested authentication, ownership, database, caching, filtering, workflow, comments, and raw SQL scenarios.
