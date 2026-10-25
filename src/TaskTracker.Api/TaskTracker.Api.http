@@ -1,6 +1,34 @@
-@TaskTracker.Api_HostAddress = http://localhost:5135
+@host = http://localhost:8080
+@token = paste-jwt-here
+@projectId = paste-project-id-here
+@taskId = paste-task-id-here
 
-GET {{TaskTracker.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{ "email": "dev@example.com", "password": "password123" }
 
 ###
+POST {{host}}/api/projects
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "name": "Launch", "description": "Ship the first release" }
+
+###
+GET {{host}}/api/projects/{{projectId}}/tasks?status=Todo&sortBy=dueDate&descending=false&page=1&pageSize=20
+Authorization: Bearer {{token}}
+
+###
+POST {{host}}/api/projects/{{projectId}}/tasks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "title": "Write release notes", "description": null, "priority": "High", "dueDate": null, "assigneeId": null }
+
+###
+POST {{host}}/api/tasks/{{taskId}}/comments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "body": "Ready for review." }
