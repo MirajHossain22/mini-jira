@@ -49,6 +49,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+if (builder.Configuration.GetValue<bool>("Database:ApplyMigrations"))
+{
+    using var scope = app.Services.CreateScope();
+    await scope.ServiceProvider.GetRequiredService<AppDbContext>().Database.MigrateAsync();
+}
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
 app.UseHttpsRedirection();
